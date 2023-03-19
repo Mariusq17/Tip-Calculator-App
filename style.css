@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Space Mono', monospace;
+}
+:root {
+    /* Colors */
+    --Strong-cyan: hsl(172, 67%, 45%);
+    --Strong-cyan-dark: hsl(172, 67%, 25%);
+    --Red: rgb(255, 71, 71);
+
+    --Very-dark-cyan: hsl(183, 100%, 15%);
+    --Dark-grayish-cyan: hsl(186, 14%, 43%);
+    --Grayish-cyan: hsl(184, 14%, 56%);
+    --Light-grayish-cyan: hsl(185, 41%, 84%);
+    --Very-light-grayish-cyan: hsl(189, 41%, 97%);
+    --White: hsl(0, 0%, 100%);
+
+    --padding: 40px;
+    --input-padding: 10px;
+    --icon-size: 15px;
+
+    /* Font */
+
+    --input-font-size: 22px;
+    --text-font-size: 1rem;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: var(--Light-grayish-cyan);
+    gap: 3rem;
+}
+h1 {
+    font-size: calc(2 * var(--text-font-size));
+    color: var(--Very-dark-cyan);
+}
+.container {
+    width: min(800px, 80%);
+    min-height: 450px;
+    background-color: var(--White);
+    padding: var(--padding);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+}
+.container .flex-item {
+    flex-grow: 1;
+    flex-basis: 0;
+    background-color: var(--Very-dark-cyan);
+    border-radius: 1rem;
+}
+.container .calculator {
+    background-color: var(--White);
+    gap: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.container .bill,
+.container .num-of-people,
+.container .tips {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: .5rem;
+}
+.container .bill h2,
+.container .num-of-people h2,
+.container .tips h2  {
+    font-size: var(--text-font-size);
+    color: var(--Dark-grayish-cyan);
+}
+.container .bill label,
+.container .num-of-people label {
+    width: 100%;
+    position: relative;
+}
+.container .bill label input,
+.container .num-of-people label input {
+    width: 100%;
+    padding: var(--input-padding);
+    padding-left: calc(var(--input-padding) + var(--icon-size));
+    text-align: end;
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+    color: var(--Very-dark-cyan);
+    font-weight: 700;
+    background-color: var(--Light-grayish-cyan);
+    font-size: var(--input-font-size);
+}
+.container .bill label input.active,
+.container .num-of-people label input.active {
+    border: 2px solid var(--Red);
+}
+.container .bill label img,
+.container .num-of-people label img {
+    width: var(--icon-size);
+    position: absolute;
+    left: var(--input-padding);
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+}
+.container .bill .error,
+.container .num-of-people .error {
+    color: var(--Red);
+    font-size: calc(.9 * var(--text-font-size));
+    user-select: none;
+    display: none;
+}
+.container .bill .error.active,
+.container .num-of-people .error.active {
+    display: block;
+}
+.container .tips .grid-tip-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.container .tips .grid-tip-container .tip {
+    background-color: var(--Very-dark-cyan);
+    padding: var(--input-padding);
+    border-radius: .5rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: var(--input-font-size);
+    font-weight: 700;
+    min-width: 100px;
+    color: var(--White);
+    transition: 300ms;
+}
+.container .tips .grid-tip-container .tip:hover,
+.container .tips .grid-tip-container .tip.active {
+    background-color: var(--Strong-cyan);
+}
+.container .tips .grid-tip-container .tip.custom {
+    padding: 0;
+    background-color: transparent;
+    overflow: hidden;
+}
+.container .tips .grid-tip-container .tip.custom input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--Light-grayish-cyan);
+    text-align: center;
+    font-size: var(--input-font-size);
+    font-weight: 700;
+    color: var(--Very-dark-cyan);
+    cursor: pointer;
+}
+.container .results {
+    padding: var(--padding);
+    padding-top: calc(var(--padding) + var(--input-padding));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.container .results .stats {
+    width: 100%;
+}
+
+.container .results .total,
+.container .results .amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.container .results .total .text,
+.container .results .amount .text {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+.container .results .total .text h2,
+.container .results .amount .text h2 {
+    color: var(--White);
+    font-size: var(--text-font-size);
+}
+.container .results .total .text h3,
+.container .results .amount .text h3 {
+    color: var(--Grayish-cyan);
+    font-size: var(--text-font-size);
+}
+.container .results .total .value,
+.container .results .amount .value {
+    color: var(--Grayish-cyan);
+    font-size: calc(1.75 * var(--input-font-size));
+    font-weight: 700;
+    color: var(--Strong-cyan);
+}
+.container .results #resetBtn {
+    width: 100%;
+    padding: var(--input-padding);
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    background-color: var(--Strong-cyan-dark);
+    font-size: var(--input-font-size);
+    color: var(--Grayish-cyan);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 300ms;
+}
+.container .results #resetBtn:hover {
+    color: var(--White);
+    background-color: var(--Strong-cyan);
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+    .container .tips .grid-tip-container .tip {
+        min-width: 0px;
+    }
+}
+@media (max-width: 600px) {
+    :root {
+        --input-font-size: 18px;
+        --text-font-size: 14px;
+    }
+    
+}
